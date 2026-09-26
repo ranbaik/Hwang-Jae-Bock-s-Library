@@ -342,6 +342,40 @@
     .featured h3 span { color: var(--aqua); }
     .program-card > p { max-width: 620px; margin: 1.6rem 0 0; color: #5f5a53; line-height: 1.85; word-break: keep-all; }
     .featured > p { color: rgba(255,255,255,.66); }
+    .program-visual {
+      position: relative;
+      margin: 1.75rem 0 0;
+      overflow: hidden;
+      background: #2d2119;
+    }
+    .program-visual::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      border: 1px solid rgba(17,16,14,.14);
+      pointer-events: none;
+    }
+    .program-visual img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: 50% 46%;
+      filter: saturate(.86) contrast(1.02);
+      transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .35s ease;
+    }
+    .program-visual:hover img { transform: scale(1.025); filter: saturate(1) contrast(1.02); }
+    .program-visual figcaption {
+      position: absolute;
+      right: .85rem;
+      bottom: .7rem;
+      padding: .3rem .5rem;
+      color: rgba(255,255,255,.86);
+      background: rgba(17,16,14,.62);
+      font-size: .64rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
     .program-details {
       margin: 2rem 0 0;
       padding: 0;
@@ -670,6 +704,10 @@
           <div class="program-top"><span>People &amp; Community</span><span>02</span></div>
           <h3>복살롱<span>Bok Salon</span></h3>
           <p>책 한 권, 하나의 질문에서 시작하는 작은 교류의 장입니다. 각자의 경험과 관점을 나누며 새로운 사람과 생각을 만납니다.</p>
+          <figure class="program-visual">
+            <img src="assets/bok-salon-cafe.webp" alt="책에서 펼쳐진 빈티지 카페와 커피, 대화를 상징하는 장면" loading="lazy">
+            <figcaption>Books · Coffee · Conversation</figcaption>
+          </figure>
           <div class="program-tags" aria-label="복살롱 키워드"><span>북토크</span><span>대화</span><span>교류</span><span>네트워크</span></div>
         </article>
 
