@@ -390,6 +390,127 @@
     .program-details span { display: block; margin-top: .45rem; color: rgba(255,255,255,.64); font-size: .79rem; line-height: 1.55; }
     .program-tags { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: .5rem; }
     .program-tags span { padding: .38rem .65rem; border: 1px solid var(--line); color: #5f5a53; font-size: .72rem; }
+    .program-inline-link {
+      margin-top: 1.4rem;
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: .65rem;
+      color: var(--ink);
+      font-size: .78rem;
+      font-weight: 650;
+      text-underline-offset: .3rem;
+    }
+
+    .class-series {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--gutter) clamp(5rem, 10vw, 10rem);
+      scroll-margin-top: 96px;
+    }
+    .class-series-intro {
+      padding: clamp(2rem, 5vw, 4.5rem);
+      display: grid;
+      grid-template-columns: .55fr 1.45fr;
+      gap: clamp(2rem, 7vw, 9rem);
+      align-items: end;
+      color: var(--white);
+      background: var(--ink);
+    }
+    .class-series-intro .section-number { color: var(--gold-light); }
+    .class-series-intro h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.25rem, 4.8vw, 5.4rem);
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: -.055em;
+      word-break: keep-all;
+    }
+    .class-series-intro h3 em { color: var(--aqua); font-weight: 400; }
+    .class-series-intro p {
+      max-width: 650px;
+      margin: 1.35rem 0 0;
+      color: rgba(255,255,255,.62);
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+    .class-track-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+    }
+    .class-track {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--paper);
+    }
+    .class-track-media { position: relative; margin: 0; overflow: hidden; background: #211d19; }
+    .class-track-media::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      border: 1px solid rgba(17,16,14,.14);
+      pointer-events: none;
+    }
+    .class-track-media img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .35s ease;
+    }
+    .class-track:nth-child(1) .class-track-media img { object-position: 50% 52%; }
+    .class-track:nth-child(2) .class-track-media img { object-position: 50% 46%; }
+    .class-track:nth-child(3) .class-track-media img { object-position: 50% 50%; }
+    .class-track:hover .class-track-media img { transform: scale(1.025); filter: brightness(.94); }
+    .class-track-body {
+      min-height: 410px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+    }
+    .class-track-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: #777168;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .class-track h4 {
+      margin: 2.25rem 0 0;
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3vw, 3.15rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      word-break: keep-all;
+    }
+    .class-track h4 span {
+      display: block;
+      margin-top: .65rem;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: .75rem;
+      font-weight: 650;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .class-track-copy { margin: 1.35rem 0 0; color: #625d55; line-height: 1.8; word-break: keep-all; }
+    .class-topic-list {
+      margin: auto 0 0;
+      padding: 1.35rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      border-top: 1px solid var(--line);
+      list-style: none;
+    }
+    .class-topic-list li { padding: .35rem .6rem; border: 1px solid var(--line); color: #686158; font-size: .75rem; }
 
     .atelier-strip {
       min-height: 680px;
@@ -551,6 +672,7 @@
       .hero-media { min-height: 72svh; }
       .program-grid { grid-template-columns: 1fr 1fr; }
       .program-card.featured { grid-column: 1 / -1; grid-row: auto; min-height: 620px; }
+      .class-track-body { min-height: 460px; }
       .about-grid { gap: 4rem; }
       .work { grid-column: span 4; }
       .work.wide { grid-column: span 8; }
@@ -583,11 +705,15 @@
       .hero-index { grid-template-columns: 1fr; gap: .75rem; }
       .hero-index a { display: grid; grid-template-columns: 2rem 1fr; align-items: baseline; gap: .5rem; }
       .hero-media { min-height: 82svh; }
-      .manifesto-inner, .section-head, .about-grid, .book-grid { grid-template-columns: 1fr; }
+      .manifesto-inner, .section-head, .class-series-intro, .about-grid, .book-grid { grid-template-columns: 1fr; }
       .section-head { align-items: start; }
       .program-grid { grid-template-columns: 1fr; }
       .program-card, .program-card.featured { min-height: 520px; }
       .program-card.featured { grid-column: auto; }
+      .class-track-grid { grid-template-columns: 1fr; }
+      .class-track { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+      .class-track:nth-child(even) .class-track-media { order: 2; }
+      .class-track-body { min-height: 430px; }
       .atelier-strip { grid-template-columns: 1fr 1fr; min-height: 0; }
       .atelier-strip figure { min-height: 420px; }
       .atelier-strip figure:first-child { grid-column: 1 / -1; min-height: 70svh; }
@@ -616,6 +742,9 @@
       .hero-actions { flex-direction: column; }
       .button-link { justify-content: space-between; }
       .program-details { grid-template-columns: 1fr; }
+      .class-track { display: flex; }
+      .class-track:nth-child(even) .class-track-media { order: 0; }
+      .class-track-body { min-height: 0; }
       .atelier-strip { grid-template-columns: 1fr; }
       .atelier-strip figure, .atelier-strip figure:first-child { grid-column: auto; min-height: 68svh; }
       .work, .work.tall, .work.wide { grid-column: 1 / -1; }
@@ -714,10 +843,53 @@
         <article class="program-card" id="library-class" data-reveal>
           <div class="program-top"><span>Knowledge &amp; Table</span><span>03</span></div>
           <h3>라이브러리 클래스 · 디너<span>Library Class / Dinner</span></h3>
-          <p>각 분야의 전문가를 초청해 약 10명이 함께 듣고 묻는 저녁입니다. 강의와 식탁, 대화가 이어지는 소수정예 배움의 시간입니다.</p>
-          <div class="program-tags" aria-label="라이브러리 클래스 키워드"><span>약 10명</span><span>전문가 강연</span><span>질의응답</span><span>디너</span></div>
+          <p>생각을 표현하는 법, 변화하는 시대를 읽는 법, 문화를 향유하는 법. 세 개의 주제를 각 분야 전문가와 함께 깊이 있게 배우는 약 10명의 특별한 저녁입니다.</p>
+          <div class="program-tags" aria-label="라이브러리 클래스 키워드"><span>생각과 표현</span><span>사회의 변화</span><span>문화의 이해</span><span>디너</span></div>
+          <a class="program-inline-link" href="#class-curriculum">세부 주제 보기 <span aria-hidden="true">↓</span></a>
         </article>
       </div>
+
+      <section class="class-series" id="class-curriculum" aria-labelledby="class-series-title">
+        <div class="class-series-intro" data-reveal>
+          <span class="section-number">Library Curriculum · 03</span>
+          <div>
+            <h3 id="class-series-title">삶을 넓히는<br><em>세 가지 지적 감각.</em></h3>
+            <p>읽고 기록하는 개인의 기술에서 출발해, 변화하는 사회를 이해하고 문화를 향유하는 눈으로 확장됩니다. 강의와 질문, 식탁의 대화가 하나의 배움으로 이어집니다.</p>
+          </div>
+        </div>
+
+        <div class="class-track-grid">
+          <article class="class-track" data-reveal>
+            <figure class="class-track-media"><img src="assets/class-thinking.webp" alt="책과 노트, 펜, 마이크가 놓인 기록과 표현의 작업 공간" loading="lazy"></figure>
+            <div class="class-track-body">
+              <div class="class-track-top"><span>Mind &amp; Expression</span><span>03—1</span></div>
+              <h4>생각을 남기는 기술<span>The Practice of Thought</span></h4>
+              <p class="class-track-copy">메모에서 시작해 기록을 쌓고, 읽은 것을 자기 언어로 말하고 쓰는 법을 익힙니다. 독서법, 노트법, 스피치와 글쓰기의 기본을 하나의 흐름으로 연결합니다.</p>
+              <ul class="class-topic-list" aria-label="생각을 남기는 기술 세부 주제"><li>메모·아카이빙</li><li>깊이 읽기</li><li>말하기·글쓰기</li></ul>
+            </div>
+          </article>
+
+          <article class="class-track" data-reveal>
+            <figure class="class-track-media"><img src="assets/class-times.webp" alt="도시의 변화와 시간, 방향을 상징하는 현대적인 관찰 장면" loading="lazy"></figure>
+            <div class="class-track-body">
+              <div class="class-track-top"><span>Society &amp; Change</span><span>03—2</span></div>
+              <h4>시대를 읽는 감각<span>Reading the Times</span></h4>
+              <p class="class-track-copy">기술·경제·사회·일상의 변화를 하나의 맥락으로 읽습니다. 변화에 휩쓸리지 않고 좋은 질문을 만들며, 자신의 선택 기준을 세우는 강연입니다.</p>
+              <ul class="class-topic-list" aria-label="시대를 읽는 감각 세부 주제"><li>AI와 기술</li><li>사회·세대 변화</li><li>미래의 일과 삶</li></ul>
+            </div>
+          </article>
+
+          <article class="class-track" data-reveal>
+            <figure class="class-track-media"><img src="assets/class-culture.webp" alt="미술과 음악, 건축, 책과 식탁이 어우러진 문화 살롱" loading="lazy"></figure>
+            <div class="class-track-body">
+              <div class="class-track-top"><span>Culture &amp; Taste</span><span>03—3</span></div>
+              <h4>문화의 결을 읽다<span>The Texture of Culture</span></h4>
+              <p class="class-track-copy">예술, 건축, 음악, 영화, 음식과 공간을 통해 문화를 보는 눈을 넓힙니다. 감상을 넘어 자신의 취향과 일상을 풍성하게 만드는 시간입니다.</p>
+              <ul class="class-topic-list" aria-label="문화의 결을 읽다 세부 주제"><li>예술·디자인</li><li>음악·영화</li><li>도시·음식·여행</li></ul>
+            </div>
+          </article>
+        </div>
+      </section>
     </section>
 
     <section class="atelier-strip" aria-label="황재복 웨딩드레스 작품 이미지">
