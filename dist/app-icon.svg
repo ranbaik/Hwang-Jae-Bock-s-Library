@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="황재복 라이브러리">
+  <rect width="512" height="512" rx="96" fill="#11100e"/>
+  <rect x="48" y="48" width="416" height="416" rx="62" fill="none" stroke="#b7975b" stroke-width="8"/>
+  <path d="M144 142v228M144 256h178M322 142v228M378 142v228" fill="none" stroke="#fffdfa" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="378" cy="146" r="22" fill="#8fc8c0"/>
+</svg>

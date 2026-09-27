@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "황재복 라이브러리",
+  "short_name": "황재복 라이브러리",
+  "description": "삶을 기록하고, 사람을 만나고, 함께 배우는 황재복 라이브러리",
+  "lang": "ko",
+  "start_url": "/#top",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f0e8",
+  "theme_color": "#11100e",
+  "icons": [
+    {
+      "src": "app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

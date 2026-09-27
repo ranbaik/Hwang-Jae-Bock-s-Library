@@ -2,10 +2,16 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>황재복 라이브러리 | Hwang Jae Bock's Library</title>
   <meta name="description" content="삶을 기록하고, 사람을 만나고, 함께 배우는 황재복 라이브러리. 라이프 아뜰리에, 복살롱, 라이브러리 클래스·디너를 만나보세요.">
   <meta name="theme-color" content="#11100e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="황재복 라이브러리">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="app-icon.svg">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2311100e'/%3E%3Cpath d='M15 16v32M15 32h25M40 16v32M49 16v32' stroke='%23f5f1e9' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='49' cy='17' r='4' fill='%23b7975b'/%3E%3C/svg%3E">
   <style>
     :root {
@@ -38,7 +44,7 @@
     body.menu-open { overflow: hidden; }
     img { display: block; max-width: 100%; }
     a { color: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
+    button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
     button { font: inherit; }
 
     .skip-link {
@@ -653,6 +659,7 @@
       letter-spacing: .1em;
       text-transform: uppercase;
     }
+    .mobile-swipe-note { display: none; }
 
     .atelier-strip {
       min-height: 680px;
@@ -786,6 +793,8 @@
     .footer-links a { text-underline-offset: .2rem; }
     .site-footer .copyright { text-align: right; }
 
+    .app-dock { display: none; }
+
     dialog {
       width: min(92vw, 980px);
       max-height: 92vh;
@@ -822,12 +831,16 @@
     }
 
     @media (max-width: 780px) {
-      .site-header { height: 70px; }
+      body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+      .site-header {
+        height: calc(70px + env(safe-area-inset-top));
+        padding-top: env(safe-area-inset-top);
+      }
       .brand-copy span { display: none; }
       .menu-toggle { display: block; }
       .site-nav {
         position: fixed;
-        inset: 70px 0 0;
+        inset: calc(70px + env(safe-area-inset-top)) 0 0;
         padding: 2rem var(--gutter) 4rem;
         display: flex;
         flex-direction: column;
@@ -841,7 +854,7 @@
       }
       .menu-open .site-nav { visibility: visible; opacity: 1; transform: none; }
       .site-nav a { width: 100%; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.14); font-family: var(--serif); font-size: 1.55rem; }
-      .hero { padding-top: 70px; }
+      .hero { padding-top: calc(70px + env(safe-area-inset-top)); }
       .hero-copy { min-height: calc(100svh - 70px); padding-top: 4rem; }
       .hero h1 { font-size: clamp(3.55rem, 17vw, 6.4rem); }
       .hero-index { grid-template-columns: 1fr; gap: .75rem; }
@@ -852,12 +865,46 @@
       .program-grid { grid-template-columns: 1fr; }
       .program-card, .program-card.featured { min-height: 520px; }
       .program-card.featured { grid-column: auto; }
-      .class-track-grid { grid-template-columns: 1fr; }
+      .class-track-grid {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: min(88vw, 42rem);
+        gap: .65rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        overscroll-behavior-inline: contain;
+        background: transparent;
+      }
+      .class-track-grid::-webkit-scrollbar, .thinking-lab-grid::-webkit-scrollbar { display: none; }
+      .class-track { scroll-snap-align: center; border: 1px solid var(--line); }
       .class-track { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
       .class-track:nth-child(even) .class-track-media { order: 2; }
       .class-track-body { min-height: 430px; }
-      .thinking-lab-grid { grid-template-columns: 1fr; }
+      .mobile-swipe-note {
+        margin: 0;
+        padding: 1rem clamp(1.7rem, 3.5vw, 3.2rem);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        color: rgba(255,255,255,.56);
+        border-bottom: 1px solid rgba(255,255,255,.14);
+        font-size: .78rem;
+        font-weight: 650;
+        letter-spacing: .04em;
+      }
+      .thinking-lab-grid {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: min(84vw, 34rem);
+        gap: 1px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        overscroll-behavior-inline: contain;
+      }
       .thinking-module { min-height: 0; }
+      .thinking-module { scroll-snap-align: start; }
       .atelier-strip { grid-template-columns: 1fr 1fr; min-height: 0; }
       .atelier-strip figure { min-height: 420px; }
       .atelier-strip figure:first-child { grid-column: 1 / -1; min-height: 70svh; }
@@ -871,6 +918,36 @@
       .book-cover-wrap { width: 82%; }
       .site-footer { grid-template-columns: 1fr; text-align: center; }
       .site-footer .copyright { text-align: center; }
+      .app-dock {
+        position: fixed;
+        z-index: 90;
+        right: .7rem;
+        bottom: calc(.65rem + env(safe-area-inset-bottom));
+        left: .7rem;
+        min-height: 58px;
+        padding: .35rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        color: var(--white);
+        background: rgba(17,16,14,.92);
+        border: 1px solid rgba(255,255,255,.2);
+        box-shadow: 0 12px 32px rgba(0,0,0,.24);
+        backdrop-filter: blur(18px);
+      }
+      .app-dock a {
+        min-height: 48px;
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: .05rem;
+        color: rgba(255,255,255,.76);
+        font-size: .7rem;
+        font-weight: 650;
+        text-decoration: none;
+      }
+      .app-dock a + a { border-left: 1px solid rgba(255,255,255,.12); }
+      .app-dock a span { color: var(--gold-light); font-size: .58rem; letter-spacing: .12em; }
+      .app-dock a:focus-visible { outline: 2px solid var(--aqua); outline-offset: -2px; }
       .lightbox-grid { grid-template-columns: 1fr; }
       .lightbox-media { min-height: 58vh; }
       .lightbox-media img { max-height: 58vh; }
@@ -889,12 +966,19 @@
       .class-track { display: flex; }
       .class-track:nth-child(even) .class-track-media { order: 0; }
       .class-track-body { min-height: 0; }
+      .class-track-grid { grid-auto-columns: min(88vw, 25rem); }
+      .thinking-lab-grid { grid-auto-columns: min(84vw, 24rem); }
       .thinking-lab-footer { align-items: flex-start; flex-direction: column; }
       .atelier-strip { grid-template-columns: 1fr; }
       .atelier-strip figure, .atelier-strip figure:first-child { grid-column: auto; min-height: 68svh; }
       .work, .work.tall, .work.wide { grid-column: 1 / -1; }
       .work img, .work.tall img, .work.wide img { aspect-ratio: 4/5; }
       .book-cover-wrap { width: 88%; }
+    }
+
+    @media (display-mode: standalone) {
+      body { min-height: 100dvh; }
+      .app-dock { bottom: max(.65rem, env(safe-area-inset-bottom)); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1045,6 +1129,8 @@
             </div>
           </div>
 
+          <p class="mobile-swipe-note"><span>세 개의 실습 과정</span><span>옆으로 넘겨보세요 →</span></p>
+
           <div class="thinking-lab-grid">
             <article class="thinking-module" data-reveal>
               <div class="thinking-module-top"><span>Capture</span><span>01</span></div>
@@ -1161,6 +1247,13 @@
     <span class="copyright">© 2026 Hwang Jae Bock's Library</span>
   </footer>
 
+  <nav class="app-dock" aria-label="앱 빠른 메뉴">
+    <a href="#top"><span>00</span>홈</a>
+    <a href="#programs"><span>01</span>프로그램</a>
+    <a href="#thinking-lab"><span>03</span>클래스</a>
+    <a href="#archive"><span>05</span>작품</a>
+  </nav>
+
   <dialog id="lightbox" aria-labelledby="lightbox-title">
     <div class="lightbox-grid">
       <div class="lightbox-media"><img id="lightbox-image" src="" alt=""></div>
@@ -1221,6 +1314,10 @@
         items.forEach((item) => observer.observe(item));
       } else {
         items.forEach((item) => item.classList.add('visible'));
+      }
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
       }
     })();
   </script>
