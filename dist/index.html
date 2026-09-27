@@ -512,6 +512,148 @@
     }
     .class-topic-list li { padding: .35rem .6rem; border: 1px solid var(--line); color: #686158; font-size: .75rem; }
 
+    .track-inline-link {
+      margin-top: 1.1rem;
+      align-self: flex-start;
+      color: var(--ink);
+      font-size: .78rem;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: .3rem;
+    }
+    .thinking-lab {
+      scroll-margin-top: 96px;
+      color: var(--white);
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,.14);
+    }
+    .thinking-lab-head {
+      padding: clamp(2rem, 5vw, 4.5rem);
+      display: grid;
+      grid-template-columns: .55fr 1.45fr;
+      gap: clamp(2rem, 7vw, 9rem);
+      align-items: end;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .thinking-lab-kicker {
+      color: var(--gold-light);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .thinking-lab h4 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.15rem, 4vw, 4.55rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -.05em;
+      word-break: keep-all;
+    }
+    .thinking-lab h4 em { color: var(--aqua); font-weight: 400; }
+    .thinking-lab-intro {
+      max-width: 680px;
+      margin: 1.25rem 0 0;
+      color: rgba(255,255,255,.63);
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+    .thinking-lab-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,.14);
+    }
+    .thinking-module {
+      min-width: 0;
+      min-height: 430px;
+      padding: clamp(1.7rem, 3.5vw, 3.2rem);
+      display: flex;
+      flex-direction: column;
+      background: var(--ink);
+    }
+    .thinking-module-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--gold-light);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .thinking-module:nth-child(2) .thinking-module-top { color: var(--aqua); }
+    .thinking-module h5 {
+      margin: 2.35rem 0 0;
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.7vw, 2.85rem);
+      font-weight: 400;
+      line-height: 1.13;
+      letter-spacing: -.04em;
+      word-break: keep-all;
+    }
+    .thinking-module h5 span {
+      display: block;
+      margin-top: .65rem;
+      color: rgba(255,255,255,.42);
+      font-family: var(--sans);
+      font-size: .7rem;
+      font-weight: 650;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .thinking-module-copy {
+      margin: 1.35rem 0 0;
+      color: rgba(255,255,255,.62);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+    .thinking-module-flow {
+      margin: 1.5rem 0 0;
+      color: var(--aqua);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      word-spacing: .35em;
+    }
+    .thinking-module:nth-child(2) .thinking-module-flow { color: var(--gold-light); }
+    .thinking-deliverable {
+      margin: auto 0 0;
+      padding-top: 1.45rem;
+      display: grid;
+      gap: .45rem;
+      border-top: 1px solid rgba(255,255,255,.14);
+    }
+    .thinking-deliverable dt {
+      color: rgba(255,255,255,.38);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .thinking-deliverable dd {
+      margin: 0;
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+    .thinking-lab-footer {
+      margin: 0;
+      padding: 1.25rem clamp(1.7rem, 3.5vw, 3.2rem);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--ink);
+      background: var(--aqua);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
     .atelier-strip {
       min-height: 680px;
       display: grid;
@@ -705,7 +847,7 @@
       .hero-index { grid-template-columns: 1fr; gap: .75rem; }
       .hero-index a { display: grid; grid-template-columns: 2rem 1fr; align-items: baseline; gap: .5rem; }
       .hero-media { min-height: 82svh; }
-      .manifesto-inner, .section-head, .class-series-intro, .about-grid, .book-grid { grid-template-columns: 1fr; }
+      .manifesto-inner, .section-head, .class-series-intro, .thinking-lab-head, .about-grid, .book-grid { grid-template-columns: 1fr; }
       .section-head { align-items: start; }
       .program-grid { grid-template-columns: 1fr; }
       .program-card, .program-card.featured { min-height: 520px; }
@@ -714,6 +856,8 @@
       .class-track { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
       .class-track:nth-child(even) .class-track-media { order: 2; }
       .class-track-body { min-height: 430px; }
+      .thinking-lab-grid { grid-template-columns: 1fr; }
+      .thinking-module { min-height: 0; }
       .atelier-strip { grid-template-columns: 1fr 1fr; min-height: 0; }
       .atelier-strip figure { min-height: 420px; }
       .atelier-strip figure:first-child { grid-column: 1 / -1; min-height: 70svh; }
@@ -745,6 +889,7 @@
       .class-track { display: flex; }
       .class-track:nth-child(even) .class-track-media { order: 0; }
       .class-track-body { min-height: 0; }
+      .thinking-lab-footer { align-items: flex-start; flex-direction: column; }
       .atelier-strip { grid-template-columns: 1fr; }
       .atelier-strip figure, .atelier-strip figure:first-child { grid-column: auto; min-height: 68svh; }
       .work, .work.tall, .work.wide { grid-column: 1 / -1; }
@@ -865,7 +1010,8 @@
               <div class="class-track-top"><span>Mind &amp; Expression</span><span>03—1</span></div>
               <h4>생각을 남기는 기술<span>The Practice of Thought</span></h4>
               <p class="class-track-copy">메모에서 시작해 기록을 쌓고, 읽은 것을 자기 언어로 말하고 쓰는 법을 익힙니다. 독서법, 노트법, 스피치와 글쓰기의 기본을 하나의 흐름으로 연결합니다.</p>
-              <ul class="class-topic-list" aria-label="생각을 남기는 기술 세부 주제"><li>메모·아카이빙</li><li>깊이 읽기</li><li>말하기·글쓰기</li></ul>
+              <ul class="class-topic-list" aria-label="생각을 남기는 기술 세부 주제"><li>생각 채집실</li><li>질문하는 독서실</li><li>나의 언어 작업실</li></ul>
+              <a class="track-inline-link" href="#thinking-lab">3-Step 실습 과정 보기 <span aria-hidden="true">↓</span></a>
             </div>
           </article>
 
@@ -889,6 +1035,53 @@
             </div>
           </article>
         </div>
+
+        <section class="thinking-lab" id="thinking-lab" aria-labelledby="thinking-lab-title">
+          <div class="thinking-lab-head" data-reveal>
+            <span class="thinking-lab-kicker">Practice Lab · 03—1</span>
+            <div>
+              <h4 id="thinking-lab-title">읽고, 남기고,<br><em>자기 언어로 꺼내는 법.</em></h4>
+              <p class="thinking-lab-intro">한 번 듣고 끝나는 강의가 아니라, 매 회차 하나의 결과물을 남기는 실습형 프로그램입니다. 생각을 수집하고 연결한 뒤 말과 글로 표현하는 순환을 익힙니다.</p>
+            </div>
+          </div>
+
+          <div class="thinking-lab-grid">
+            <article class="thinking-module" data-reveal>
+              <div class="thinking-module-top"><span>Capture</span><span>01</span></div>
+              <h5>생각 채집실<span>Note &amp; Archive Lab</span></h5>
+              <p class="thinking-module-copy">일상의 장면과 질문, 마음에 남은 문장을 놓치지 않고 수집합니다. 흩어진 메모를 주제별로 연결해 다시 꺼내 쓸 수 있는 나만의 지식 아카이브를 만듭니다.</p>
+              <p class="thinking-module-flow">관찰 → 메모 → 분류</p>
+              <dl class="thinking-deliverable">
+                <dt>Take-away</dt>
+                <dd>나만의 메모 시스템 · 주제 카드 10장</dd>
+              </dl>
+            </article>
+
+            <article class="thinking-module" data-reveal>
+              <div class="thinking-module-top"><span>Read</span><span>02</span></div>
+              <h5>질문하는 독서실<span>Deep Reading Studio</span></h5>
+              <p class="thinking-module-copy">읽기 전에 질문을 세우고 핵심 문장과 저자의 논리를 구조화합니다. 책 한 권을 한 장으로 정리해 오래 기억하고 대화에 활용하는 깊이 읽기를 연습합니다.</p>
+              <p class="thinking-module-flow">질문 → 연결 → 한 장 정리</p>
+              <dl class="thinking-deliverable">
+                <dt>Take-away</dt>
+                <dd>한 장 독서 지도 · 질문 노트</dd>
+              </dl>
+            </article>
+
+            <article class="thinking-module" data-reveal>
+              <div class="thinking-module-top"><span>Express</span><span>03</span></div>
+              <h5>나의 언어 작업실<span>Speak &amp; Write Workshop</span></h5>
+              <p class="thinking-module-copy">읽고 생각한 것을 3분의 말과 짧은 글로 바꿉니다. 피드백과 퇴고를 거쳐 정확하면서도 인상적으로 전달하는 자기만의 언어를 완성합니다.</p>
+              <p class="thinking-module-flow">초고 → 말하기 → 퇴고</p>
+              <dl class="thinking-deliverable">
+                <dt>Take-away</dt>
+                <dd>3분 스피치 · 600자 미니 에세이</dd>
+              </dl>
+            </article>
+          </div>
+
+          <p class="thinking-lab-footer"><span>Collect → Connect → Communicate</span><span>읽은 것이 삶의 언어가 되는 저녁</span></p>
+        </section>
       </section>
     </section>
 
