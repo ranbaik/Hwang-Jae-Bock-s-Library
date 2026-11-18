@@ -1,5 +1,7 @@
-const CACHE_NAME = 'hjb-library-v5';
-const APP_SHELL = ['/', '/index.html', '/manifest.webmanifest', '/app-icon.svg'];
+const CACHE_NAME = 'hjb-library-v7';
+const BASE_PATH = new URL('./', self.registration.scope).pathname;
+const INDEX_PATH = `${BASE_PATH}index.html`;
+const APP_SHELL = [BASE_PATH, INDEX_PATH, `${BASE_PATH}manifest.webmanifest`, `${BASE_PATH}app-icon.svg`];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
@@ -22,10 +24,10 @@ self.addEventListener('fetch', (event) => {
       fetch(event.request)
         .then((response) => {
           const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put('/index.html', copy));
+          caches.open(CACHE_NAME).then((cache) => cache.put(INDEX_PATH, copy));
           return response;
         })
-        .catch(() => caches.match('/index.html'))
+        .catch(() => caches.match(INDEX_PATH))
     );
     return;
   }
