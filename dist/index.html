@@ -840,6 +840,15 @@
     .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
     .footer-links a { text-underline-offset: .2rem; }
     .site-footer .copyright { text-align: right; }
+    .footer-contact { grid-column: 1 / -1; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.08); font-style: normal; text-align: center; line-height: 1.8; }
+    .footer-contact a { color: var(--gold-light); text-decoration: none; }
+    .footer-contact a:hover, .footer-contact a:focus-visible { text-decoration: underline; text-underline-offset: .2rem; }
+    .footer-contact i { font-style: normal; margin: 0 .4rem; opacity: .6; }
+    .closing-cta { margin-top: 2.6rem; display: inline-flex; align-items: center; gap: .8rem; min-height: 50px; padding: 0 1.6rem; border: 1px solid rgba(255,253,250,.75);
+      color: var(--white); font-size: .92rem; letter-spacing: .02em; text-decoration: none; transition: background .25s ease, color .25s ease; }
+    .closing-cta span { transition: transform .3s ease; }
+    .closing-cta:hover, .closing-cta:focus-visible { background: var(--white); color: var(--ink); }
+    .closing-cta:hover span { transform: translateX(4px); }
 
     .app-dock { display: none; }
 
@@ -977,7 +986,7 @@
         min-height: 58px;
         padding: .35rem;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         color: var(--white);
         background: rgba(17,16,14,.92);
         border: 1px solid rgba(255,255,255,.2);
@@ -1183,6 +1192,7 @@
       <a href="#about">디자이너</a>
       <a href="#programs">라이브러리</a>
       <a href="#book">책과 이야기</a>
+      <a href="life-atelier/">라이프 아뜰리에</a>
     </nav>
     <div class="header-actions">
       <button class="music-toggle" id="music-toggle" type="button" aria-label="배경음악 켜기" aria-pressed="false" title="배경음악 켜기">
@@ -1442,13 +1452,15 @@
     <section class="closing" aria-label="마무리 메시지">
       <p data-reveal>당신의 삶은<br>이미 한 편의 <em>작품</em>입니다.</p>
       <small>Hwang Jae Bock's Library</small>
+      <a class="closing-cta" href="life-atelier/#inquire">라이프 아뜰리에 사전 대화 신청 <span aria-hidden="true">→</span></a>
     </section>
   </main>
 
   <footer class="site-footer">
     <span class="footer-name">황재복 라이브러리</span>
-    <nav class="footer-links" aria-label="하단 메뉴"><a href="#programs">Programs</a><a href="#about">About</a><a href="#archive">Archive</a><a href="#book">Book</a></nav>
+    <nav class="footer-links" aria-label="하단 메뉴"><a href="#programs">Programs</a><a href="#about">About</a><a href="#archive">Archive</a><a href="#book">Book</a><a href="life-atelier/">Life Atelier</a></nav>
     <span class="copyright">© 2026 Hwang Jae Bock's Library</span>
+    <address class="footer-contact">라이프 아뜰리에 문의 <a href="mailto:life_atelier@gmail.com">life_atelier@gmail.com</a> <i aria-hidden="true">·</i> <a href="tel:027250000">02-725-0000</a> <i aria-hidden="true">·</i> 서울 언주로152길 16</address>
   </footer>
 
   <nav class="app-dock" aria-label="앱 빠른 메뉴">
@@ -1456,6 +1468,7 @@
     <a href="#programs"><span>01</span>프로그램</a>
     <a href="#thinking-lab"><span>03</span>클래스</a>
     <a href="#archive"><span>05</span>작품</a>
+    <a href="life-atelier/"><span>LA</span>아뜰리에</a>
   </nav>
 
   <dialog id="lightbox" aria-labelledby="lightbox-title">
