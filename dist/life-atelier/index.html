@@ -316,8 +316,10 @@
     .done-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; margin-top: 28px; }
     .apply-done button.link { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
     .apply-done .apply-edit { margin-top: 22px; font-size: 14px; }
-    .closing p.contact { margin-top: 28px; font-size: 14px; color: rgba(239, 232, 220, .5); }
-    .closing p.contact a, footer span a { color: var(--gold-soft); }
+    .closing .contact { margin-top: 28px; font-style: normal; font-size: 14px; line-height: 1.9; color: rgba(239, 232, 220, .5); }
+    .closing .contact i { font-style: normal; margin: 0 6px; }
+    .closing .contact .addr { font-size: 13px; color: rgba(239, 232, 220, .42); }
+    .closing .contact a, footer span a { color: var(--gold-soft); }
     @media (max-width: 640px) { .apply__grid { grid-template-columns: 1fr; gap: 30px; } .apply-done { padding: 40px 24px; } }
 
     footer { max-width: 1240px; margin: 28px auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; color: rgba(239, 232, 220, .4); font-size: 13px; padding-bottom: env(safe-area-inset-bottom); }
@@ -600,7 +602,7 @@
     <section class="closing on-dark" id="inquire" data-night aria-labelledby="cl-title">
       <span class="eyebrow label" data-reveal>Life Atelier · Inquiry</span>
       <h2 id="cl-title" data-reveal style="--d:.1s;--y:40px">당신의 삶은 이미<br>한 편의 <em class="acc">작품</em>입니다.</h2>
-      <p data-reveal style="--d:.2s">라이프 아뜰리에는 한 분 한 분과의 사전 대화로 시작됩니다. 아래 신청서를 작성해 갤러리 나우로 보내 주시면, 편하신 방식으로 먼저 연락드리겠습니다.</p>
+      <p data-reveal style="--d:.2s">라이프 아뜰리에는 한 분 한 분과의 사전 대화로 시작됩니다. 아래 신청서를 작성해 메일로 보내 주시면, 편하신 방식으로 먼저 연락드리겠습니다.</p>
 
       <form class="apply" id="apply" data-reveal style="--d:.3s" novalidate aria-label="라이프 아뜰리에 사전 대화 신청서">
         <div class="hp" aria-hidden="true"><label>비워 두세요 <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
@@ -640,15 +642,15 @@
 
       <div class="apply-done" id="apply-done" tabindex="-1" hidden>
         <span class="eyebrow label">Last step</span>
-        <h3>신청서를 문자로 보내 주세요.</h3>
-        <p>아래 버튼을 누르면 갤러리 나우(<span class="nowrap">010-5236-1499</span>)로 보낼 문자가 준비됩니다. 문자 앱에서 전송을 눌러야 신청이 완료됩니다.</p>
+        <h3>신청서를 메일로 보내 주세요.</h3>
+        <p>아래 버튼을 누르면 <span class="nowrap">life_atelier@gmail.com</span>으로 보낼 메일이 준비됩니다. 메일 앱에서 보내기를 눌러야 신청이 완료됩니다.</p>
         <pre class="apply-msg" id="apply-msg"></pre>
         <div class="done-actions">
-          <a class="btn btn--cream" id="apply-sms" href="sms:01052361499">문자로 보내기
+          <a class="btn btn--cream" id="apply-send" href="mailto:life_atelier@gmail.com">메일로 보내기
             <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4"/></svg></span>
           </a>
           <button class="link" type="button" id="apply-copy">내용 복사</button>
-          <a class="link" href="tel:01052361499">전화로 문의</a>
+          <a class="link" href="tel:027250000">전화로 문의 (02-725-0000)</a>
         </div>
         <button class="link apply-edit" type="button" id="apply-edit">신청서 수정하기</button>
       </div>
@@ -657,10 +659,10 @@
         <a class="link" href="../#programs">다른 프로그램 보기</a>
         <a class="link" href="../">황재복 라이브러리 홈으로</a>
       </div>
-      <p class="contact" data-reveal>문의 · 갤러리 나우 <a href="tel:01052361499">010-5236-1499</a></p>
+      <address class="contact" data-reveal><span>문의</span> <a href="mailto:life_atelier@gmail.com">life_atelier@gmail.com</a> <i aria-hidden="true">·</i> <a href="tel:027250000">02-725-0000</a><br><span class="addr">서울 언주로152길 16 · 16, Eonju-ro 152-gil, Seoul</span></address>
       <svg class="loop" viewBox="0 0 1240 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H1240" stroke="#b08d57" stroke-width="1.2" stroke-dasharray="7 6" opacity=".5"/></svg>
       <footer>
-        <span>© 2026 Hwang Jae Bock's Library · Life Atelier · 문의 갤러리 나우 <a href="tel:01052361499">010-5236-1499</a></span>
+        <span>© 2026 Hwang Jae Bock's Library · Life Atelier · <a href="mailto:life_atelier@gmail.com">life_atelier@gmail.com</a> · <a href="tel:027250000">02-725-0000</a></span>
         <nav aria-label="하단 메뉴"><a href="#philosophy">철학</a><a href="#process">과정</a><a href="#designer">디자이너</a><a href="../">라이브러리 홈</a><a href="#top">맨 위로</a></nav>
       </footer>
     </section>
@@ -922,14 +924,14 @@
     sync();
   })();
 
-  // application form: no server — the visitor sends the filled-in application by text to Gallery Now.
+  // application form: no server — the visitor sends the filled-in application by e-mail from their own mail app.
   (() => {
-    const TEL = '01052361499';
+    const EMAIL = 'life_atelier@gmail.com';
     const form = document.getElementById('apply');
     const done = document.getElementById('apply-done');
     const status = document.getElementById('apply-status');
     const msgBox = document.getElementById('apply-msg');
-    const sms = document.getElementById('apply-sms');
+    const send = document.getElementById('apply-send');
     const copy = document.getElementById('apply-copy');
     form.addEventListener('input', () => { if (status.dataset.kind === 'error') { status.textContent = ''; status.dataset.kind = ''; } });
     form.addEventListener('submit', (e) => {
@@ -951,7 +953,7 @@
       lines.push('개인정보 수집·이용: 동의');
       const text = lines.join('\n');
       msgBox.textContent = text;
-      sms.href = `sms:${TEL}?&body=${encodeURIComponent(text)}`;
+      send.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`[라이프 아뜰리에] ${d['성함'].trim()} 님 사전 대화 신청`)}&body=${encodeURIComponent(text)}`;
       status.textContent = '';
       form.hidden = true; done.hidden = false; done.focus();
     });
