@@ -1,7 +1,7 @@
-const CACHE_NAME = 'hjb-library-v13-atelier';
+const CACHE_NAME = 'hjb-library-v14-canon';
 const BASE_PATH = new URL('./', self.registration.scope).pathname;
 const INDEX_PATH = `${BASE_PATH}index.html`;
-const APP_SHELL = [BASE_PATH, INDEX_PATH, `${BASE_PATH}manifest.webmanifest`, `${BASE_PATH}app-icon.svg`, `${BASE_PATH}background-music.js`];
+const APP_SHELL = [BASE_PATH, INDEX_PATH, `${BASE_PATH}manifest.webmanifest`, `${BASE_PATH}app-icon.svg`, `${BASE_PATH}canon-music.js`, `${BASE_PATH}background-music.js`];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));

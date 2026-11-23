@@ -668,6 +668,7 @@
     </section>
   </main>
 
+  <script src="../canon-music.js?v=14"></script>
   <script>
   (() => {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -680,6 +681,16 @@
       const running = [...appearEls].some((el) => (el.getAnimations ? el.getAnimations() : []).some((a) => a.playState === 'running' || a.playState === 'finished'));
       if (!running) appearEls.forEach((el) => el.classList.add('is-in'));
     }));
+    // arriving with a hash (e.g. the home menu's 사전 대화 신청 → #inquire): make sure we land on it
+    addEventListener('load', () => {
+      const id = decodeURIComponent(location.hash.slice(1));
+      const target = id && document.getElementById(id);
+      if (target && Math.abs(target.getBoundingClientRect().top) > 4) {
+        document.documentElement.style.scrollBehavior = 'auto';
+        target.scrollIntoView({ block: 'start' });
+        document.documentElement.style.scrollBehavior = '';
+      }
+    });
 
     // reveals
     document.querySelectorAll('[data-stagger]').forEach((g) => {
@@ -791,21 +802,14 @@
     addEventListener('resize', () => { if (innerWidth > 760) setMenu(false); });
   })();
 
-  // background music: generative ambient pad (Web Audio, no audio file).
-  // Shares its on/off preference with the main library site via the same localStorage key.
+  // background music: Pachelbel's Canon from ../canon-music.js (shared with the library home page,
+  // including its on/off preference via the same localStorage key).
   (() => {
     const button = document.getElementById('bgm');
     const hint = document.getElementById('bgm-hint');
-    const AC = window.AudioContext || window.webkitAudioContext;
     const KEY = 'hjb-background-music';
-    const progression = [
-      [146.83, 220.00, 293.66, 369.99],
-      [123.47, 185.00, 246.94, 293.66],
-      [98.00, 146.83, 220.00, 277.18],
-      [110.00, 164.81, 220.00, 329.63]
-    ];
-    const CHORD_MS = 7600;
-    let ctx, master, timer, step = 0, voices = [], playing = false, enabled = false;
+    const player = window.HJBCanon && window.HJBCanon.create();
+    let enabled = false, suspendTimer;
     try { enabled = localStorage.getItem(KEY) === 'on'; } catch (e) {}
 
     let hintTimer;
@@ -817,84 +821,16 @@
       const label = enabled ? '배경음악 끄기' : '배경음악 켜기';
       button.setAttribute('aria-pressed', String(enabled));
       button.setAttribute('aria-label', label);
-      button.title = label;
+      button.title = `${label} (캐논)`;
     };
     const save = () => { try { localStorage.setItem(KEY, enabled ? 'on' : 'off'); } catch (e) {} };
-
-    const graph = () => {
-      if (ctx) return;
-      ctx = new AC();
-      const comp = ctx.createDynamicsCompressor();
-      comp.threshold.value = -32; comp.knee.value = 20; comp.ratio.value = 4; comp.attack.value = .15; comp.release.value = 1.1;
-      const warmth = ctx.createBiquadFilter();
-      warmth.type = 'lowpass'; warmth.frequency.value = 1450; warmth.Q.value = .45;
-      master = ctx.createGain(); master.gain.value = .0001;
-      master.connect(warmth); warmth.connect(comp); comp.connect(ctx.destination);
-    };
-    const release = (t) => {
-      if (!ctx) return;
-      const now = ctx.currentTime;
-      voices.forEach(({ osc, gain }) => {
-        gain.gain.cancelScheduledValues(now);
-        gain.gain.setValueAtTime(Math.max(gain.gain.value, .0001), now);
-        gain.gain.exponentialRampToValueAtTime(.0001, now + t);
-        try { osc.stop(now + t + .1); } catch (e) {}
-      });
-      voices = [];
-    };
-    const voice = (freq, type, detune, peak, start, attack, hold, end) => {
-      const osc = ctx.createOscillator(), gain = ctx.createGain();
-      osc.type = type; osc.frequency.value = freq; osc.detune.value = detune;
-      gain.gain.setValueAtTime(.0001, start);
-      gain.gain.exponentialRampToValueAtTime(peak, start + attack);
-      gain.gain.setValueAtTime(peak, start + hold);
-      gain.gain.exponentialRampToValueAtTime(.0001, start + end);
-      osc.connect(gain); gain.connect(master);
-      osc.start(start); osc.stop(start + end + .2);
-      voices.push({ osc, gain });
-    };
-    const chord = (freqs) => {
-      if (!ctx || !playing) return;
-      release(3.2);
-      const now = ctx.currentTime;
-      freqs.forEach((f, i) => {
-        voice(f, 'sine', -5, .012 * (1 - i * .08), now + i * .12, 2.4 + i * .18, 6.2, 10.5);
-        voice(f, 'triangle', 5, .0045 * (1 - i * .08), now + i * .12, 2.4 + i * .18, 6.2, 10.5);
-      });
-      // a quiet two-note chime an octave up, like a needle passing through cloth
-      [freqs[2] * 2, freqs[3] * 2].forEach((f, k) => voice(f, 'sine', 0, .0032, now + 1.6 + k * .9, .04, .2, 3.6));
-    };
-    const tick = () => {
-      if (!playing) return;
-      chord(progression[step % progression.length]);
-      step += 1;
-      timer = setTimeout(tick, CHORD_MS);
-    };
-    const start = async () => {
-      if (!enabled) return;
-      graph();
-      try { await ctx.resume(); } catch (e) {}
-      if (playing) return;
-      playing = true;
-      const now = ctx.currentTime;
-      master.gain.cancelScheduledValues(now);
-      master.gain.setValueAtTime(.0001, now);
-      master.gain.exponentialRampToValueAtTime(.72, now + 1.8);
-      tick();
-    };
+    const start = async () => { if (!enabled) return; clearTimeout(suspendTimer); await player.start(); };
     const stop = () => {
-      playing = false;
-      clearTimeout(timer);
-      release(1.2);
-      if (!ctx || !master) return;
-      const now = ctx.currentTime;
-      master.gain.cancelScheduledValues(now);
-      master.gain.setValueAtTime(Math.max(master.gain.value, .0001), now);
-      master.gain.exponentialRampToValueAtTime(.0001, now + 1.1);
-      setTimeout(() => { if (!enabled && ctx.state === 'running') ctx.suspend(); }, 1200);
+      player.stop();
+      suspendTimer = setTimeout(() => { const c = player.context; if (!enabled && c && c.state === 'running') c.suspend(); }, 1200);
     };
 
-    if (!AC) {
+    if (!player) {
       button.disabled = true;
       button.title = '이 브라우저에서는 배경음악을 지원하지 않습니다';
       button.setAttribute('aria-label', button.title);
@@ -903,7 +839,7 @@
     button.addEventListener('click', async () => {
       enabled = !enabled;
       save(); sync();
-      flash(enabled ? '배경음악 켜짐' : '배경음악 꺼짐');
+      flash(enabled ? '배경음악 켜짐 · 캐논' : '배경음악 꺼짐');
       if (enabled) await start(); else stop();
     });
     // Browsers block autoplay: a saved "on" preference resumes on the first interaction.
@@ -917,9 +853,10 @@
       addEventListener('keydown', unlock);
     }
     document.addEventListener('visibilitychange', () => {
-      if (!ctx) return;
-      if (document.hidden && ctx.state === 'running') ctx.suspend();
-      else if (!document.hidden && enabled) ctx.resume();
+      const c = player.context;
+      if (!c) return;
+      if (document.hidden && c.state === 'running') c.suspend();
+      else if (!document.hidden && enabled) c.resume();
     });
     sync();
   })();

@@ -16,7 +16,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
-  <script src="background-music.js" defer></script>
+  <script src="canon-music.js?v=14" defer></script>
+  <script src="background-music.js?v=14" defer></script>
   <style>
     :root {
       --ink: #11100e;
@@ -1070,6 +1071,9 @@
     .brand-copy span { color: #6a6058; font-size: .75rem; letter-spacing: .07em; margin-top: .35rem; }
     .site-nav a { color: #51483f; font-size: .94rem; }
     .site-nav a:hover { color: #a06548; }
+    .site-nav a.nav-apply { color: #a06548; }
+    .site-nav a.nav-apply::after { right: 0; background: currentColor; opacity: .45; }
+    .site-nav a.nav-apply:hover::after { opacity: 1; }
     .couture-hero { position: relative; padding-top: 86px; min-height: min(960px,100svh); display: grid; grid-template-columns: 48% 52%; background: #f5f3ef; color: var(--ink); }
     .couture-copy { position: relative; padding: clamp(3rem,6vw,6rem) var(--gutter) 2rem; display: flex; justify-content: center; flex-direction: column; }
     .couture-kicker { margin: 0 0 1.5rem; color: #776455; font-size: .94rem; letter-spacing: .12em; animation: couture-rise 1s var(--ease-couture) both; }
@@ -1178,6 +1182,14 @@
       .reveal-ready [data-reveal] { opacity: 1; transform: none; }
     }
 
+      /* header: keep the six menu items on one line between tablet and wide desktop */
+    @media (min-width: 781px) { .site-nav a { white-space: nowrap; } }
+    @media (min-width: 781px) and (max-width: 1280px) {
+      .brand-copy span { display: none; }
+      .site-nav { gap: clamp(.8rem, 1.4vw, 1.4rem); }
+      .site-nav a { font-size: .86rem; }
+    }
+    @media (min-width: 781px) and (max-width: 1000px) { .site-nav a[href="life-atelier/"] { display: none; } }
   </style>
 </head>
 <body>
@@ -1193,6 +1205,7 @@
       <a href="#programs">라이브러리</a>
       <a href="#book">책과 이야기</a>
       <a href="life-atelier/">라이프 아뜰리에</a>
+      <a class="nav-apply" href="life-atelier/#inquire">사전 대화 신청</a>
     </nav>
     <div class="header-actions">
       <button class="music-toggle" id="music-toggle" type="button" aria-label="배경음악 켜기" aria-pressed="false" title="배경음악 켜기">
