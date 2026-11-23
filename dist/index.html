@@ -451,6 +451,11 @@
       text-underline-offset: .3rem;
     }
 
+    .featured .program-page-link { margin-top: 1.75rem; color: var(--gold-light); text-decoration: underline; text-decoration-color: rgba(214,189,139,.4); transition: color .25s ease, text-decoration-color .25s ease; }
+    .featured .program-page-link:hover { color: var(--white); text-decoration-color: currentColor; }
+    .featured .program-page-link span { transition: transform .3s ease; }
+    .featured .program-page-link:hover span { transform: translateX(4px); }
+
     .class-series {
       max-width: var(--max);
       margin: 0 auto;
@@ -1296,6 +1301,7 @@
             <li><b>03. Portrait</b><span>그 사람다운 인물 사진 촬영</span></li>
             <li><b>04. Archive</b><span>글과 사진을 한 권의 기록으로</span></li>
           </ol>
+          <a class="program-inline-link program-page-link" href="life-atelier/">라이프 아뜰리에 자세히 보기 <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="program-card" id="bok-salon" data-reveal>

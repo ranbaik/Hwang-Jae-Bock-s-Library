@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hjb-library-v12-bgm';
+const CACHE_NAME = 'hjb-library-v13-atelier';
 const BASE_PATH = new URL('./', self.registration.scope).pathname;
 const INDEX_PATH = `${BASE_PATH}index.html`;
 const APP_SHELL = [BASE_PATH, INDEX_PATH, `${BASE_PATH}manifest.webmanifest`, `${BASE_PATH}app-icon.svg`, `${BASE_PATH}background-music.js`];
@@ -20,14 +20,17 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
 
   if (event.request.mode === 'navigate') {
+    const path = new URL(event.request.url).pathname;
+    const isHome = path === BASE_PATH || path === INDEX_PATH;
     event.respondWith(
       fetch(event.request)
         .then((response) => {
           const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(INDEX_PATH, copy));
+          // only the home page may refresh the offline copy of index.html; sub-pages are cached under their own URL
+          if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put(isHome ? INDEX_PATH : event.request, copy));
           return response;
         })
-        .catch(() => caches.match(INDEX_PATH))
+        .catch(() => caches.match(isHome ? INDEX_PATH : event.request).then((cached) => cached || caches.match(INDEX_PATH)))
     );
     return;
   }
