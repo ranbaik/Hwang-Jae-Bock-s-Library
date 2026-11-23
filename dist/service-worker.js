@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hjb-library-v7';
+const CACHE_NAME = 'hjb-library-v8-couture';
 const BASE_PATH = new URL('./', self.registration.scope).pathname;
 const INDEX_PATH = `${BASE_PATH}index.html`;
 const APP_SHELL = [BASE_PATH, INDEX_PATH, `${BASE_PATH}manifest.webmanifest`, `${BASE_PATH}app-icon.svg`];
@@ -11,7 +11,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
+      .then((keys) => Promise.all(keys.filter((key) => key.startsWith('hjb-library-') && key !== CACHE_NAME).map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
