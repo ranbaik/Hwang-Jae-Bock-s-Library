@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+  <script src="background-music.js" defer></script>
   <style>
     :root {
       --ink: #11100e;
@@ -110,7 +111,7 @@
       letter-spacing: .13em;
       text-transform: uppercase;
     }
-    .site-nav { display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2.5rem); }
+    .site-nav { margin-left: auto; display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2.5rem); }
     .site-nav a {
       position: relative;
       color: rgba(255, 255, 255, .78);
@@ -131,6 +132,45 @@
     }
     .site-nav a:hover, .site-nav a:focus-visible { color: #fff; }
     .site-nav a:hover::after, .site-nav a:focus-visible::after { right: 0; }
+    .header-actions { display: flex; align-items: center; gap: .55rem; }
+    .music-toggle {
+      min-width: 72px;
+      height: 38px;
+      margin-left: clamp(.35rem, 1.3vw, 1.25rem);
+      padding: 0 .75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      color: rgba(255,255,255,.64);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.22);
+      cursor: pointer;
+      transition: color .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .music-toggle:hover, .music-toggle:focus-visible {
+      color: var(--white);
+      border-color: rgba(255,255,255,.5);
+      outline: none;
+    }
+    .music-toggle[aria-pressed="true"] {
+      color: var(--ink);
+      background: var(--aqua);
+      border-color: var(--aqua);
+    }
+    .music-label { font-size: .67rem; font-weight: 750; letter-spacing: .12em; }
+    .music-wave { height: 13px; display: inline-flex; align-items: center; gap: 2px; }
+    .music-wave i {
+      width: 2px;
+      height: 4px;
+      display: block;
+      background: currentColor;
+      transform-origin: center;
+    }
+    .music-toggle[aria-pressed="true"] .music-wave i { animation: music-wave .8s ease-in-out infinite alternate; }
+    .music-toggle[aria-pressed="true"] .music-wave i:nth-child(2) { animation-delay: -.35s; }
+    .music-toggle[aria-pressed="true"] .music-wave i:nth-child(3) { animation-delay: -.6s; }
+    @keyframes music-wave { from { transform: scaleY(1); } to { transform: scaleY(3); } }
     .menu-toggle {
       display: none;
       width: 44px;
@@ -840,6 +880,8 @@
         padding-top: env(safe-area-inset-top);
       }
       .brand-copy span { display: none; }
+      .site-nav { margin-left: 0; }
+      .music-toggle { min-width: 64px; margin-left: 0; }
       .menu-toggle { display: block; }
       .site-nav {
         position: fixed;
@@ -1131,13 +1173,19 @@
       <span class="brand-mark" aria-hidden="true">HJB</span>
       <span class="brand-copy"><strong>HWANG JAE BOCK</strong><span>Wedding Designer · Life Curator</span></span>
     </a>
-    <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav"><span></span></button>
     <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
       <a href="#archive">컬렉션</a>
       <a href="#about">디자이너</a>
       <a href="#programs">라이브러리</a>
       <a href="#book">책과 이야기</a>
     </nav>
+    <div class="header-actions">
+      <button class="music-toggle" id="music-toggle" type="button" aria-label="배경음악 켜기" aria-pressed="false" title="배경음악 켜기">
+        <span class="music-wave" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="music-label">BGM</span>
+      </button>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+    </div>
   </header>
 
   <main id="main">
