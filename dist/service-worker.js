@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hjb-library-v10-atelier';
+const CACHE_NAME = 'hjb-library-v11-runway';
 const BASE_PATH = new URL('./', self.registration.scope).pathname;
 const INDEX_PATH = `${BASE_PATH}index.html`;
 const APP_SHELL = [BASE_PATH, INDEX_PATH, `${BASE_PATH}manifest.webmanifest`, `${BASE_PATH}app-icon.svg`];
