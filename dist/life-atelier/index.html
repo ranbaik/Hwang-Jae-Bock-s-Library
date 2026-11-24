@@ -87,6 +87,12 @@
     .nav ul { display: flex; gap: 34px; list-style: none; margin: 0; padding: 0; }
     .nav ul a { font-size: 14px; opacity: .72; transition: opacity .25s; }
     .nav ul a:hover { opacity: 1; }
+    .nav ul a.nav-about { font-family: var(--latin); font-style: italic; font-size: 15px; letter-spacing: .01em; }
+    .about-link { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 36px; padding-bottom: 6px; border-bottom: 1px solid currentColor;
+      font-family: var(--latin); font-size: 22px; letter-spacing: -.01em; color: var(--ink, #14120f); text-decoration: none; }
+    .about-link em { color: var(--gold); }
+    .about-link span { font-size: 16px; transition: transform .3s; }
+    .about-link:hover span { transform: translateX(4px); }
     .nav .btn { min-height: 42px; padding: 4px 6px 4px 20px; font-size: 13.5px; }
     .nav .btn .dot { width: 30px; height: 30px; }
     .nav.on-night:not(.is-open) .btn--ink { background: var(--cream); color: var(--ink); }
@@ -396,7 +402,7 @@
   <div class="grain" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
-    <a class="brand appear appear--down" style="--d:.05s" href="../#programs" aria-label="황재복 라이브러리 프로그램으로 돌아가기">
+    <a class="brand appear appear--down" style="--d:.05s" href="../" aria-label="황재복 홈으로 돌아가기">
       <b>Life Atelier</b><small>황재복 라이브러리</small>
     </a>
     <nav aria-label="주요 메뉴">
@@ -405,6 +411,7 @@
         <li class="appear appear--down" style="--d:.18s"><a href="#process">과정</a></li>
         <li class="appear appear--down" style="--d:.24s"><a href="#for-whom">누구를 위한 기록</a></li>
         <li class="appear appear--down" style="--d:.30s"><a href="#designer">디자이너</a></li>
+        <li class="appear appear--down" style="--d:.33s"><a class="nav-about" href="../#top">About Hwang Jae Bock</a></li>
       </ul>
     </nav>
     <div class="nav__right">
@@ -594,6 +601,7 @@
             <div><dt class="label">Author</dt><dd>《너의 결혼을 디자인하라》<small>라이프메이커, 2014</small></dd></div>
             <div><dt class="label">Archive</dt><dd>드레스 · 사진 · 이야기<small>삶을 남기는 작업</small></dd></div>
           </dl>
+          <a class="about-link" href="../#top" data-reveal style="--d:.4s">About <em>Hwang Jae Bock</em> <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -663,7 +671,7 @@
       <svg class="loop" viewBox="0 0 1240 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H1240" stroke="#b08d57" stroke-width="1.2" stroke-dasharray="7 6" opacity=".5"/></svg>
       <footer>
         <span>© 2026 Hwang Jae Bock's Library · Life Atelier · <a href="mailto:life_atelier@gmail.com">life_atelier@gmail.com</a> · <a href="tel:027250000">02-725-0000</a></span>
-        <nav aria-label="하단 메뉴"><a href="#philosophy">철학</a><a href="#process">과정</a><a href="#designer">디자이너</a><a href="../">라이브러리 홈</a><a href="#top">맨 위로</a></nav>
+        <nav aria-label="하단 메뉴"><a href="#philosophy">철학</a><a href="#process">과정</a><a href="#designer">디자이너</a><a href="../#top">About Hwang Jae Bock</a><a href="#top">맨 위로</a></nav>
       </footer>
     </section>
   </main>
