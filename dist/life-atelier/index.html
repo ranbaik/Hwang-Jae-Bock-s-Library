@@ -258,6 +258,30 @@
     .whom li p { margin: 16px 0 0; color: rgba(20, 18, 15, .62); font-size: 15.5px; max-width: 22rem; }
 
     /* ───────── DESIGNER ───────── */
+    .chapter .owner { margin-top: 10px; color: var(--gold-soft); font-size: 14px; letter-spacing: .01em; }
+    .chapter .owner b { color: var(--cream); font-weight: 500; }
+    .chapter .owner__tag { display: inline-block; margin-right: 10px; padding: 2px 8px; border: 1px solid rgba(205, 177, 135, .45); border-radius: 99px; font-size: 11.5px; color: var(--gold-soft); }
+    .experts { padding: clamp(110px, 13vw, 168px) var(--gutter); }
+    .experts__inner { max-width: 1240px; margin: 0 auto; }
+    .experts__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--ink); }
+    .experts__list li { padding: 34px 24px 10px 0; }
+    .experts__list li + li { padding-left: 24px; border-left: 1px solid var(--line); }
+    .experts__list .mono { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--paper-2); border: 1px solid rgba(176, 141, 87, .45); color: var(--gold); font-size: 24px; }
+    .experts__list .label { display: block; margin-top: 26px; color: var(--gold); }
+    .experts__list h3 { margin: 12px 0 0; font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); letter-spacing: -.03em; }
+    .experts__list .role { margin: 6px 0 0; font-size: 15px; color: rgba(20, 18, 15, .78); }
+    .experts__list .cred { margin: 14px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13.5px; line-height: 1.6; color: rgba(20, 18, 15, .55); word-break: keep-all; }
+    @media (max-width: 1080px) {
+      .experts__list { grid-template-columns: repeat(2, 1fr); }
+      .experts__list li, .experts__list li + li { padding: 28px 24px 28px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+      .experts__list li:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--line); }
+    }
+    @media (max-width: 760px) {
+      .experts__list { grid-template-columns: 1fr; }
+      .experts__list li, .experts__list li + li, .experts__list li:nth-child(even) { padding: 26px 0; border-left: 0; display: grid; grid-template-columns: 64px 1fr; column-gap: 20px; }
+      .experts__list .mono { grid-row: span 5; }
+      .experts__list .label { margin-top: 0; }
+    }
     .designer { background: var(--paper-2); padding: clamp(110px, 13vw, 168px) var(--gutter); }
     .designer__inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 5fr 7fr; gap: clamp(40px, 7vw, 120px); align-items: center; }
     .runway { position: relative; aspect-ratio: 500 / 680; overflow: hidden; border-radius: 28px; background: #0c0b09; }
@@ -507,21 +531,25 @@
             <div class="chapter__top"><span class="num">01</span><h3>듣다<span class="it">Listen</span></h3></div>
             <p>사전 대화로 삶의 지도를 함께 그린 뒤, 1:1 심층 인터뷰로 중요한 선택의 순간들을 천천히 따라갑니다. 기억은 서두르지 않을 때 가장 정확해집니다.</p>
             <div class="meta label">사전 대화 · 1:1 심층 인터뷰</div>
+            <div class="owner"><span class="owner__tag">담당</span><b>황재복</b> 디자이너</div>
           </li>
           <li class="chapter" data-reveal>
             <div class="chapter__top"><span class="num">02</span><h3>쓰다<span class="it">Write</span></h3></div>
             <p>흩어진 이야기를 하나의 생애 서사로 재단합니다. 원단의 결을 살리듯 그 사람의 말투와 리듬을 살려, 읽는 이가 목소리를 들을 수 있는 원고로 집필합니다.</p>
             <div class="meta label">생애 서사 구성 · 원고 집필</div>
+            <div class="owner"><span class="owner__tag">담당</span><b>김익한</b> 기록학자 · <b>김세희</b> 예술기획가</div>
           </li>
           <li class="chapter" data-reveal>
             <div class="chapter__top"><span class="num">03</span><h3>담다<span class="it">Portrait</span></h3></div>
             <p>수많은 신부에게 가장 잘 어울리는 한 벌을 찾아 온 디자이너의 시선으로, 지금의 얼굴을 가장 그 사람답게 사진에 담습니다.</p>
             <div class="meta label">인물 사진 촬영</div>
+            <div class="owner"><span class="owner__tag">담당</span><b>김보하</b> 사진작가</div>
           </li>
           <li class="chapter" data-reveal>
             <div class="chapter__top"><span class="num">04</span><h3>엮다<span class="it">Archive</span></h3></div>
             <p>글과 사진을 한 권의 기록으로 엮습니다. 자녀와 후손이 언제든 다시 펼쳐볼 수 있는, 가장 개인적인 유산이 완성됩니다.</p>
             <div class="meta label">글 + 사진 · 한 권의 기록</div>
+            <div class="owner"><span class="owner__tag">담당</span><b>백란</b> AI수리과학자</div>
           </li>
           </ol>
         </div>
@@ -606,6 +634,56 @@
       </div>
     </section>
 
+    <!-- EXPERTS -->
+    <section class="experts" id="experts" aria-labelledby="ex-title">
+      <div class="experts__inner">
+        <div class="whom__head">
+          <div data-reveal>
+            <span class="eyebrow label">The makers</span>
+            <h2 class="h2" id="ex-title">한 권을 함께 만드는<br><em class="acc">사람들</em>.</h2>
+          </div>
+          <p data-reveal style="--d:.12s">듣고, 쓰고, 담고, 엮는 네 과정을 각 분야의 전문가가 맡아 한 사람의 이야기를 완성합니다.</p>
+        </div>
+        <ol class="experts__list">
+          <li data-reveal>
+            <span class="mono" aria-hidden="true">황</span>
+            <span class="label">01 듣다</span>
+            <h3>황재복</h3>
+            <p class="role">웨딩드레스 디자이너</p>
+            <p class="cred">성균관대학교 예술철학 박사</p>
+          </li>
+          <li data-reveal>
+            <span class="mono" aria-hidden="true">김</span>
+            <span class="label">02 쓰다</span>
+            <h3>김익한</h3>
+            <p class="role">기록학자</p>
+            <p class="cred">일본 사회학 박사</p>
+          </li>
+          <li data-reveal>
+            <span class="mono" aria-hidden="true">김</span>
+            <span class="label">02 쓰다</span>
+            <h3>김세희</h3>
+            <p class="role">예술기획가</p>
+            <p class="cred">서울대학교 예술경영학 박사</p>
+          </li>
+          <li data-reveal>
+            <span class="mono" aria-hidden="true">김</span>
+            <span class="label">03 담다</span>
+            <h3>김보하</h3>
+            <p class="role">사진작가</p>
+            <p class="cred">인물 사진</p>
+          </li>
+          <li data-reveal>
+            <span class="mono" aria-hidden="true">백</span>
+            <span class="label">04 엮다</span>
+            <h3>백란</h3>
+            <p class="role">AI수리과학자</p>
+            <p class="cred">NIU 이학 박사</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <!-- CLOSING -->
     <section class="closing on-dark" id="inquire" data-night aria-labelledby="cl-title">
       <span class="eyebrow label" data-reveal>Life Atelier · Inquiry</span>
@@ -671,7 +749,7 @@
       <svg class="loop" viewBox="0 0 1240 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H1240" stroke="#b08d57" stroke-width="1.2" stroke-dasharray="7 6" opacity=".5"/></svg>
       <footer>
         <span>© 2026 Hwang Jae Bock's Library · Life Atelier · <a href="mailto:life_atelier@gmail.com">life_atelier@gmail.com</a> · <a href="tel:027250000">02-725-0000</a></span>
-        <nav aria-label="하단 메뉴"><a href="#philosophy">철학</a><a href="#process">과정</a><a href="#designer">디자이너</a><a href="../#top">About Hwang Jae Bock</a><a href="#top">맨 위로</a></nav>
+        <nav aria-label="하단 메뉴"><a href="#philosophy">철학</a><a href="#process">과정</a><a href="#designer">디자이너</a><a href="#experts">전문가</a><a href="../#top">About Hwang Jae Bock</a><a href="#top">맨 위로</a></nav>
       </footer>
     </section>
   </main>
