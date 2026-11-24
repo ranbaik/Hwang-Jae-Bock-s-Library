@@ -285,6 +285,16 @@
       .experts__list .mono { grid-row: span 5; }
       .experts__list .label { margin-top: 0; }
     }
+    /* experts: larger, higher-contrast type */
+    .experts .eyebrow { font-size: 14px; color: rgba(20, 18, 15, .7); }
+    .experts .whom__head p { font-size: 17.5px; line-height: 1.85; color: rgba(20, 18, 15, .78); }
+    .experts__list li { padding-top: 38px; }
+    .experts__list .mono { width: 76px; height: 76px; font-size: 28px; color: #8a6a3a; border-color: rgba(176, 141, 87, .7); }
+    .experts__list .label { font-family: var(--kr); font-size: 15px; letter-spacing: .08em; font-weight: 600; color: #8a6a3a; }
+    .experts__list h3 { font-size: clamp(28px, 2.5vw, 36px); font-weight: 500; }
+    .experts__list .role { margin-top: 10px; font-size: 18px; font-weight: 500; color: rgba(20, 18, 15, .88); }
+    .experts__list .cred { margin-top: 18px; padding-top: 18px; font-size: 16.5px; line-height: 1.65; color: rgba(20, 18, 15, .78); }
+    @media (max-width: 760px) { .experts__list .mono { width: 64px; height: 64px; font-size: 24px; } .experts__list li, .experts__list li + li, .experts__list li:nth-child(even) { grid-template-columns: 64px 1fr; } }
     .designer { background: var(--paper-2); padding: clamp(110px, 13vw, 168px) var(--gutter); }
     .designer__inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 5fr 7fr; gap: clamp(40px, 7vw, 120px); align-items: center; }
     .runway { position: relative; aspect-ratio: 500 / 680; overflow: hidden; border-radius: 28px; background: #0c0b09; }
