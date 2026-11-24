@@ -88,6 +88,9 @@
     .nav ul a { font-size: 14px; opacity: .72; transition: opacity .25s; }
     .nav ul a:hover { opacity: 1; }
     .nav ul a.nav-about { font-family: var(--latin); font-style: italic; font-size: 15px; letter-spacing: .01em; }
+    .nav ul a, .brand b, .brand small { white-space: nowrap; }
+    @media (max-width: 1400px) { .nav ul { gap: 22px; } .nav ul a { font-size: 13.5px; } }
+    @media (max-width: 1240px) { .brand small { display: none; } .nav ul { gap: 18px; } .nav ul a { font-size: 13px; } }
     .about-link { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 36px; padding-bottom: 6px; border-bottom: 1px solid currentColor;
       font-family: var(--latin); font-size: 22px; letter-spacing: -.01em; color: var(--ink, #14120f); text-decoration: none; }
     .about-link em { color: var(--gold); }
@@ -436,6 +439,7 @@
         <li class="appear appear--down" style="--d:.24s"><a href="#for-whom">누구를 위한 기록</a></li>
         <li class="appear appear--down" style="--d:.30s"><a href="#designer">디자이너</a></li>
         <li class="appear appear--down" style="--d:.33s"><a class="nav-about" href="../#top">About Hwang Jae Bock</a></li>
+        <li class="appear appear--down" style="--d:.36s"><a href="https://ranbaik.github.io/hwang-jaebok-library/" target="_blank" rel="noopener">황재복 라이브러리</a></li>
       </ul>
     </nav>
     <div class="nav__right">
