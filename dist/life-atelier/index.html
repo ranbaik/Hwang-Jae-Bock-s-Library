@@ -84,6 +84,12 @@
     .brand { display: flex; align-items: baseline; gap: 12px; line-height: 1; }
     .brand b { font-family: var(--latin); font-style: italic; font-weight: 500; font-size: 26px; letter-spacing: -.02em; }
     .brand small { font-size: 11.5px; letter-spacing: .02em; opacity: .55; }
+    .brand { align-items: center; }
+    .brand-logo { display: block; height: 46px; width: auto; flex: none; margin-right: 2px; }
+    .brand-logo--light, .nav.on-night:not(.is-open) .brand-logo--dark { display: none; }
+    .nav.on-night:not(.is-open) .brand-logo--light { display: block; }
+    footer .footer-logo { flex-basis: 100%; height: 96px; width: auto; max-width: none; opacity: .9; margin-bottom: 6px; object-fit: contain; object-position: left; }
+    @media (max-width: 760px) { .brand-logo { height: 38px; } }
     .nav ul { display: flex; gap: 34px; list-style: none; margin: 0; padding: 0; }
     .nav ul a { font-size: 14px; opacity: .72; transition: opacity .25s; }
     .nav ul a:hover { opacity: 1; }
@@ -440,6 +446,7 @@
 
   <header class="nav" id="nav">
     <a class="brand appear appear--down" style="--d:.05s" href="../" aria-label="황재복 홈으로 돌아가기">
+      <img class="brand-logo brand-logo--dark" src="../assets/logo-hjb-sign-dark.png" alt="" width="184" height="114"><img class="brand-logo brand-logo--light" src="../assets/logo-hjb-sign-light.png" alt="" width="184" height="114">
       <b>Life Atelier</b><small>황재복 라이브러리</small>
     </a>
     <nav aria-label="주요 메뉴">
@@ -762,6 +769,7 @@
       <address class="contact" data-reveal><span>문의</span> <a href="mailto:life_atelier@gmail.com">life_atelier@gmail.com</a> <i aria-hidden="true">·</i> <a href="tel:027250000">02-725-0000</a><br><span class="addr">서울 언주로152길 16 · 16, Eonju-ro 152-gil, Seoul</span></address>
       <svg class="loop" viewBox="0 0 1240 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H1240" stroke="#b08d57" stroke-width="1.2" stroke-dasharray="7 6" opacity=".5"/></svg>
       <footer>
+        <img class="footer-logo" src="../assets/logo-hjb-full-light.png" alt="황재복 HWANG JAE BOCK 로고" width="189" height="344" loading="lazy">
         <span>© 2026 Hwang Jae Bock's Library · Life Atelier · <a href="mailto:life_atelier@gmail.com">life_atelier@gmail.com</a> · <a href="tel:027250000">02-725-0000</a></span>
         <nav aria-label="하단 메뉴"><a href="#philosophy">철학</a><a href="#process">과정</a><a href="#designer">디자이너</a><a href="#experts">전문가</a><a href="../#top">About Hwang Jae Bock</a><a href="#top">맨 위로</a></nav>
       </footer>
