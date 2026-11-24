@@ -1134,6 +1134,11 @@
     .book-cover-wrap img { transition: transform 1s var(--ease-couture); }
     .book-cover-wrap:hover img { transform: rotateY(-9deg) rotateZ(-2deg); }
     .closing { background: #d8c5b5; }
+    .closing { color: #2a2420; }
+    .closing p em { color: #8a5539; font-style: italic; }
+    .closing small { color: rgba(42,36,32,.62); }
+    .closing-cta { color: #2a2420; border-color: rgba(42,36,32,.7); }
+    .closing-cta:hover, .closing-cta:focus-visible { background: #2a2420; color: #fffdfa; }
     @keyframes couture-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
     @keyframes couture-drift { from { transform: scale(1.06); } to { transform: scale(1); } }
     @media (max-width: 1050px) {
@@ -1293,14 +1298,6 @@
         </div>
       </div>
     </section>
-
-    <section class="atelier-strip" aria-label="황재복 웨딩드레스 작품 이미지">
-      <figure><img src="assets/grace.png" alt="고전적인 오프숄더 웨딩드레스 작품 Grace" loading="lazy"><figcaption>Grace</figcaption></figure>
-      <figure><img src="assets/olivia.png" alt="절제된 실루엣의 웨딩드레스 작품 Olivia" loading="lazy"><figcaption>Olivia</figcaption></figure>
-      <figure><img src="assets/sasha.png" alt="로맨틱한 드레이핑의 웨딩드레스 작품 Sasha" loading="lazy"><figcaption>Sasha</figcaption></figure>
-    </section>
-
-
 
     <section class="book" id="book" aria-labelledby="book-title">
       <div class="book-grid">
